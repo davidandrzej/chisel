@@ -16,7 +16,7 @@
             
 (defn run-lda
   "Given an InstanceList, train a ParallelTopicModel"
-  [instancelist T numiter topicsfile]
+  [instancelist T numiter]
   (doto (new ParallelTopicModel T alpha beta)
     (.addInstances instancelist)
     (.setTopicDisplay showinterval topwords)
