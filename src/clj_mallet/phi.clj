@@ -1,0 +1,46 @@
+(ns clj-mallet.phi
+  (:use [clj-mallet.util :only (get-private-field)]))
+
+;; Clojure re-write of tricky MALLET code for extracting both topic
+;; index and count from a single int using bit-twiddling tricks
+(defn- extract-weight
+  "Process typeTopicCounts[] (from ParallelTopicModel.printTopicWordWeights)"
+  [beta topicmask topicbits topiccounts topic]
+  (loop [idx 0
+         weight beta]
+    (if (or (>= idx (alength topiccounts))
+            (<= (aget topiccounts idx) 0))
+      weight
+      (if (= topic (bit-and (aget topiccounts idx)
+                            topicmask))                
+        (+ weight (bit-shift-right (aget topiccounts idx)
+                                   topicbits))
+        (recur (inc idx)
+               weight)))))
+
+(defn- get-single-phi
+  [alphabet beta topicmask topicbits typetopiccounts topic]
+  "Extract a single topic phi_z = P(w | z)"
+  (hash-map
+   :topic topic
+   :words
+   (map
+    #(hash-map :word (.lookupObject alphabet %1)
+               :prob
+               (extract-weight beta topicmask topicbits
+                               (aget typetopiccounts %1)
+                               topic))
+    (range (.size alphabet)))))
+
+(defn get-phi
+  "Extract/normalize phi values from MALLET ParallelTopicModel"
+  [topicmodel]
+  (let [alphabet (.getAlphabet topicmodel)
+        typetopiccounts (get-private-field topicmodel "typeTopicCounts")
+        beta (get-private-field topicmodel "beta")
+        topicmask (get-private-field topicmodel "topicMask")
+        topicbits (get-private-field topicmodel "topicBits")]
+    (map 
+       (partial get-single-phi alphabet beta topicmask
+                topicbits typetopiccounts)
+       (range (.getNumTopics topicmodel)))))
