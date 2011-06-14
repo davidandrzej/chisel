@@ -1,5 +1,5 @@
 ;;
-;; Convert text records in MongoDB to MALLET input format (InstanceList)
+;; Convert docID->text hashmap to MALLET input format (InstanceList)
 ;; 
 (ns clj-mallet.instances
   (:import (cc.mallet.types InstanceList Instance))
