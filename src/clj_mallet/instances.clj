@@ -8,7 +8,7 @@
                            CharSequence2TokenSequence
                            TokenSequence2FeatureSequence)))
                                   
-(defn- document-to-instance
+(defn document-to-instance
   "Convert a document ID and a text string to a MALLET instance"
   [[documentid text]]
   (Instance. text "nolabel" documentid nil))
@@ -21,3 +21,12 @@
                     (new TokenSequence2FeatureSequence)])]                    
     (doto (new InstanceList pipes)
       (.addThruPipe (.iterator (map document-to-instance documentmap)))))) 
+
+(defn get-instance-list-from-iter
+  "Convert (documentID, text) map to MALLET InstanceList"
+  [instanceiter]
+  (let [pipes (new SerialPipes                
+                   [(new CharSequence2TokenSequence #"[\p{L}\p{P}]*\p{L}")
+                    (new TokenSequence2FeatureSequence)])]                    
+    (doto (new InstanceList pipes)
+      (.addThruPipe (.iterator instanceiter)))))
