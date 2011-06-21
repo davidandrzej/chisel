@@ -1,7 +1,8 @@
 (ns clj-mallet.theta
   (:use [clj-mallet.util :only (get-private-field)]))
 
-;; Does *not* include smoothing parameter...!
+;; Does not currently include smoothing parameter...!
+;; (closer read of MALLET src reveals they don't either...)
 (defn- get-single-theta
   "Extract a single document theta_d = P(z|d)"
   [topicassign]

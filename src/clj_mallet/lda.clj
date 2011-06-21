@@ -2,7 +2,8 @@
   (:import (java.io File ObjectOutputStream FileOutputStream))
   (:import (cc.mallet.topics ParallelTopicModel)))
 
-;; For now, simply hard-code all these parameters
+;; For now, simply hard-code all these parameters...
+;; TODO: fixme
 (def topwords 20)
 (def showinterval 50)
 (def numthreads (dec (.availableProcessors (Runtime/getRuntime))))
@@ -41,6 +42,11 @@
   "Write out top N words for each topic"
   [topicmodel outfile]  
   (.printTopWords topicmodel (new File outfile) topwords false))
+
+(defn write-sample
+  "Write out top N words for each topic"
+  [topicmodel outfile]  
+  (.printState topicmodel (new File outfile)))
 
 (defn write-documents
   "Write out InstanceList to MALLET-ready input file"
