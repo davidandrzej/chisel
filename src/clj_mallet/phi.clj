@@ -32,6 +32,12 @@
                                topic))
     (range (.size alphabet)))))
 
+(defn get-likely-words
+  "Given all word-score string pairs, drop out the tied-for-last"
+  [records]
+  (let [minval (:prob (apply min-key :prob records))]
+   (filter #(> (:prob %1) minval) records)))
+
 (defn get-phi
   "Extract/normalize phi values from MALLET ParallelTopicModel"
   [topicmodel]
@@ -44,3 +50,9 @@
        (partial get-single-phi alphabet beta topicmask
                 topicbits typetopiccounts)
        (range (.getNumTopics topicmodel)))))
+
+(defn get-likely-phi
+  "Wrapper for get-phi that discards low-prob (smoothing only) words"
+  [topicmodel]
+  (map #(assoc %1 :words (get-likely-words (:words %1)))
+       (get-phi topicmodel)))
