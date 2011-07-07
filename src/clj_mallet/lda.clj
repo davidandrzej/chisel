@@ -1,4 +1,5 @@
 (ns clj-mallet.lda
+  "Running LDA inference and writing out results"
   (:import (java.io File ObjectOutputStream FileOutputStream))
   (:import (cc.mallet.topics ParallelTopicModel)))
 
@@ -16,7 +17,7 @@
 (def thetamax -1) 
             
 (defn run-lda
-  "Given an InstanceList, train a ParallelTopicModel"
+  "Train a ParallelTopicModel from a given InstanceList"
   [instancelist T numiter]
   (doto (new ParallelTopicModel T alpha beta)
     (.addInstances instancelist)

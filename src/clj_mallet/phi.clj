@@ -1,10 +1,12 @@
 (ns clj-mallet.phi
+  "Estimation and manipulation of phi=P(w|z)"
   (:use [clj-mallet.util :only (get-private-field)]))
 
-;; Clojure re-write of tricky MALLET code for extracting both topic
-;; index and count from a single int using bit-twiddling tricks
 (defn- extract-weight
-  "Process typeTopicCounts[] (from ParallelTopicModel.printTopicWordWeights)"
+  "Process typeTopicCounts[] (from
+ParallelTopicModel.printTopicWordWeights).  Clojure re-write of tricky
+MALLET code for extracting both topic index and count from a single
+int using bit-twiddling tricks"
   [beta topicmask topicbits topiccounts topic]
   (loop [idx 0
          weight beta]
@@ -19,8 +21,8 @@
                weight)))))
 
 (defn- get-single-phi
-  [alphabet beta topicmask topicbits typetopiccounts topic]
   "Extract a single topic phi_z = P(w | z)"
+  [alphabet beta topicmask topicbits typetopiccounts topic]
   (hash-map
    :topic topic
    :words

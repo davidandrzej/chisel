@@ -1,4 +1,5 @@
 (ns clj-mallet.sample
+  "Actual latent z assignments from final Gibbs sample"
   (:require [clojure.string :as str])
   (:use [clj-mallet.util :only (get-private-field)]))
 

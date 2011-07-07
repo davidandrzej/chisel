@@ -1,10 +1,12 @@
 (ns clj-mallet.theta
+  "Estimation and manipulation of theta=P(z|d)"
   (:use [clj-mallet.util :only (get-private-field)]))
 
-;; Does not currently include smoothing parameter...!
-;; (closer read of MALLET src reveals they don't either...)
+
 (defn- get-single-theta
-  "Extract a single document theta_d = P(z|d)"
+  "Extract a single document theta_d = P(z|d).  Does not currently
+include smoothing parameter, but a closer read of MALLET src reveals
+they don't either...!"
   [topicassign]
   (let [counts (frequencies (.. topicassign topicSequence getFeatures))
         doclen (reduce + (map second counts))]      
