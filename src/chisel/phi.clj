@@ -1,6 +1,6 @@
-(ns clj-mallet.phi
+(ns chisel.phi
   "Estimation and manipulation of phi=P(w|z)"
-  (:use [clj-mallet.util :only (get-private-field)]))
+  (:use [chisel.util :only (get-private-field)]))
 
 (defn- extract-weight
   "Process typeTopicCounts[] (from

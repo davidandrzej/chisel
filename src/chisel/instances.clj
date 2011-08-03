@@ -1,4 +1,4 @@
-(ns clj-mallet.instances
+(ns chisel.instances
   "Convert docID->text hashmap to MALLET input format (InstanceList)"
   (:import (cc.mallet.types InstanceList Instance))
   (:import (cc.mallet.pipe Pipe

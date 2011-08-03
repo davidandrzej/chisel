@@ -1,7 +1,7 @@
-(ns clj-mallet.sample
+(ns chisel.sample
   "Actual latent z assignments from final Gibbs sample"
   (:require [clojure.string :as str])
-  (:use [clj-mallet.util :only (get-private-field)]))
+  (:use [chisel.util :only (get-private-field)]))
 
 (defn- get-single-sample
   "Get the token-sample associations for a single document"

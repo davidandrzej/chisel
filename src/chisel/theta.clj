@@ -1,7 +1,6 @@
-(ns clj-mallet.theta
+(ns chisel.theta
   "Estimation and manipulation of theta=P(z|d)"
-  (:use [clj-mallet.util :only (get-private-field)]))
-
+  (:use [chisel.util :only (get-private-field)]))
 
 (defn- get-single-theta
   "Extract a single document theta_d = P(z|d).  Does not currently

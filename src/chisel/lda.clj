@@ -1,30 +1,31 @@
-(ns clj-mallet.lda
-  "Running LDA inference and writing out results"
+(ns chisel.lda
+  "Run LDA inference and write out results"
   (:import (java.io File ObjectOutputStream FileOutputStream))
   (:import (cc.mallet.topics ParallelTopicModel)))
 
-;; For now, simply hard-code all these parameters...
-;; TODO: fixme
-(def topwords 20)
-(def showinterval 50)
-(def numthreads (dec (.availableProcessors (Runtime/getRuntime))))
-(def optimizeinterval 25)
-(def optimizeburnin 200)
-(def usesymmetricalpha false)
-(def alpha 50.0)
-(def beta 0.01)
-(def thetathresh 0.0)
-(def thetamax -1) 
-            
 (defn run-lda
-  "Train a ParallelTopicModel from a given InstanceList"
-  [instancelist T numiter]
+  "Train a ParallelTopicModel from a given InstanceList with named
+arguments for all LDA parameters"
+  [instancelist & {:keys [T numiter
+                          topwords showinterval numthreads
+                          optinterval optburnin
+                          usesymmetricalpha alpha beta
+                          thetathresh thetamax]
+                   :or {T 50 numiter 500
+                        topwords 20 showinterval 50
+                        numthreads
+                        (dec (.availableProcessors
+                              (Runtime/getRuntime)))
+                        optinterval 25 optburnin 200
+                        usesymmetricalpha false
+                        alpha 50.0 beta 0.01
+                        thetathresh 0.0 thetamax -1}}]
   (doto (new ParallelTopicModel T alpha beta)
     (.addInstances instancelist)
     (.setTopicDisplay showinterval topwords)
     (.setNumIterations numiter)        
-    (.setOptimizeInterval optimizeinterval)
-    (.setBurninPeriod optimizeburnin)
+    (.setOptimizeInterval optinterval)
+    (.setBurninPeriod optburnin)
     (.setSymmetricAlpha usesymmetricalpha)                
     (.setNumThreads numthreads)
     (.estimate)))

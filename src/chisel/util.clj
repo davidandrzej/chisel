@@ -1,4 +1,4 @@
-(ns clj-mallet.util
+(ns chisel.util
   "Utility function needed to access MALLET protected fields")
 
 (defn get-private-field

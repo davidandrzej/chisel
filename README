@@ -1,4 +1,4 @@
-# clj-mallet
+# chisel
 
 Clojure wrapper code to programmatically call the MALLET API to do LDA
 topic modeling.  For example, we may wish to run LDA directly against
@@ -8,11 +8,11 @@ text records in a database without messing around with the filesystem.
 
 (def corpus {"Doc1" "Foo bar baz cattle snow machine",
              "Doc2" "Snoopy snoopy snoopy snoopy", ...})
-(def instances (clj-mallet.instances/get-instance-list corpus))
+(def instances (chisel.instances/get-instance-list corpus))
 (def T 50)
 (def numsamp 500)
-(def topicmodel (clj-mallet.lda/run-lda instances T numsamp))
-(clj-mallet.lda/write-topic-word topicmodel "mycorpus.topics")
+(def topicmodel (chisel.lda/run-lda instances T numsamp))
+(chisel.lda/write-topic-word topicmodel "mycorpus.topics")
 
 ## License
 
