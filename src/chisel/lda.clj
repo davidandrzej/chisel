@@ -6,13 +6,13 @@
 (defn run-lda
   "Train a ParallelTopicModel from a given InstanceList with named
 arguments for all LDA parameters"
-  [instancelist & {:keys [T numiter
-                          topwords showinterval numthreads
+  [instancelist & {:keys [T numiter topwords
+                          showinterval numthreads
                           optinterval optburnin
                           usesymmetricalpha alpha beta
                           thetathresh thetamax]
                    :or {T 50 numiter 500
-                        topwords 20 showinterval 50
+                        topwords 20 showinterval 50 
                         numthreads
                         (dec (.availableProcessors
                               (Runtime/getRuntime)))
@@ -42,7 +42,7 @@ arguments for all LDA parameters"
 
 (defn write-topics
   "Write out top N words for each topic"
-  [topicmodel outfile]  
+  [topicmodel outfile & {:keys [topwords] :or {topwords 20}}]
   (.printTopWords topicmodel (new File outfile) topwords false))
 
 (defn write-sample
