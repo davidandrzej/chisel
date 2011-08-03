@@ -1,8 +1,11 @@
 # chisel
 
-Clojure wrapper code to programmatically call the MALLET API to do LDA
-topic modeling.  For example, we may wish to run LDA directly against
-text records in a database without messing around with the filesystem.
+This package contains Clojure wrapper code to do LDA topic modeling
+via the MALLET Java API.  For example, we may wish to run LDA directly
+against text records in a database without touching the local
+filesystem, programmatically extract the learned topics, and write
+these to a different database.  The goal of this wrapper code is to
+make these kind of tasks easier.
 
 ## Usage
 
@@ -11,7 +14,7 @@ text records in a database without messing around with the filesystem.
 (def instances (chisel.instances/get-instance-list corpus))
 (def T 50)
 (def numsamp 500)
-(def topicmodel (chisel.lda/run-lda instances T numsamp))
+(def topicmodel (chisel.lda/run-lda instances :T T :numsamp numsamp))
 (chisel.lda/write-topic-word topicmodel "mycorpus.topics")
 
 ## License
