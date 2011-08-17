@@ -7,6 +7,8 @@ without touching the local filesystem, programmatically extract the
 learned topics, and write these to a different database.  The goal of
 this wrapper code is to make these kind of tasks easier.
 
+References 
+
 [1] Blei, David M., Ng, Andrew Y., and Jordan, Michael
 I. (2003). Latent Dirichlet Allocation.  Journal of Machine Learning
 Research (JMLR) 3 (Mar. 2003), 993-1022.
@@ -20,8 +22,8 @@ Toolkit."  http://mallet.cs.umass.edu. 2002.
 This wrapper requires you to have already built and installed the
 MALLET jar to your local maven repo (see the above link [2]).
 
-You should then be able to install the wrapper with 'lein install' and
-use the chisel namespaces in your own code.  For example:
+You should then be able to build the wrapper with leiningen and use
+the chisel namespaces in your own code.  For example:
 
 (ns my-example
  (:use (chisel instances lda)))
