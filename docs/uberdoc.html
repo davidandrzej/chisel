@@ -2526,31 +2526,34 @@ $(document).ready(function() {
   color: #2a00ff !important;
 }
 </style><style type="text/css">html{margin:0;padding:0;}h1{margin:0;padding:0;}h2{margin:0;padding:0;}h3{margin:0;padding:0;}h4{margin:0;padding:0;}a{color:#261A3B;}a:visited{color:#261A3B;}</style><style type="text/css">.header{margin-top:30px;}h1.project-name{font-size:34px;display:inline;}h2.project-version{font-size:18px;margin-top:0;display:inline;margin-left:10px;}.toc-link{font-size:12px;margin-left:10px;color:#252519;text-decoration:none;}.toc-link:hover{color:#5050A6;}.toc h1{font-size:34px;margin:0;}.docs-header{border-bottom:dotted #aaa 1px;padding-bottom:10px;margin-bottom:25px;}.toc h1{font-size:24px;}.toc{border-bottom:solid #bbb 1px;margin-bottom:40px;}.toc ul{margin-left:20px;padding-left:0px;padding-top:0;margin-top:0;}.toc li{list-style-type:none;padding-left:0;}.dependencies{}.dependencies table{font-size:16px;width:99.99%;border:none;margin-left:20px;}.dependencies td{padding-right:20px;;white-space:nowrap;}.dependencies .dotted{width:99%;}.dependencies .dotted hr{margin-bottom:-6px;noshade:noshade;border-top:none;color:transparent;border-left:none;border-bottom:dotted #bbb 1px;border-right:none;background-color:transparent;height:0;}.dependencies .dep-version{text-align:right;}.plugins ul{margin-left:20px;padding-left:0px;padding-top:0;margin-top:0;}.plugins li{list-style-type:none;padding-left:0;}.header p{margin-left:20px;}</style><style type="text/css">#floating-toc{position:fixed;top:10px;right:20px;height:20px;overflow:hidden;text-align:right;}#floating-toc li{list-style-type:none;margin:0;padding:0;}</style><style type="text/css">body{margin:0;padding:0;font-family:'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;;font-size:16px;color:#252519;}h1{font-size:20px;margin-top:0;}a.anchor{text-decoration:none;color:#252519;}a.anchor:hover{color:#5050A6;}table{border-spacing:0;border-bottom:solid #ddd 1px;;margin-bottom:10px;}code{display:inline;}p{margin-top:8px;}tr{margin:0px;padding:0px;}td.docs{width:410px;max-width:410px;vertical-align:top;margin:0px;padding-left:55px;padding-right:20px;border:none;}td.docs pre{font-size:12px;overflow:hidden;}td.codes{border:none;margin:0px;padding-left:20px;width:55%;border-left:solid #E5E5EE 1px;font-size:10pt;vertical-align:top;overflow:hidden;background-color:#F5F5FF;}td.spacer{padding-bottom:40px;}pre code{display:block;padding:4px;}code{background-color:ghostWhite;border:solid #DEDEDE 1px;padding-left:3px;padding-right:3px;font-size:14px;}.syntaxhighlighter code{font-size:13px;}.footer{text-align:center;}</style><title>chisel -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">chisel</h1><h2 class="project-version">1.0.0-SNAPSHOT</h2><br /><p>Do LDA topic modeling using MALLET via the Java API</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.2.1</td></tr><tr><td class="dep-name">edu.umass/mallet</td><td class="dotted"><hr /></td><td class="dep-version">0.0.1-SNAPSHOT</td></tr><tr><td class="dep-name">net.sf.trove4j/trove4j</td><td class="dotted"><hr /></td><td class="dep-version">2.0.2</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">swank-clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.3.1</td></tr><tr><td class="dep-name">marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.3.2</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#chisel.lda">chisel.lda</a></li><li><a href="#chisel.instances">chisel.instances</a></li><li><a href="#chisel.util">chisel.util</a></li><li><a href="#chisel.theta">chisel.theta</a></li><li><a href="#chisel.sample">chisel.sample</a></li><li><a href="#chisel.phi">chisel.phi</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chisel.lda" name="chisel.lda"><h1 class="project-name">chisel.lda</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Running LDA inference and writing out results</p>
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.2.1</td></tr><tr><td class="dep-name">edu.umass/mallet</td><td class="dotted"><hr /></td><td class="dep-version">0.0.1-SNAPSHOT</td></tr><tr><td class="dep-name">net.sf.trove4j/trove4j</td><td class="dotted"><hr /></td><td class="dep-version">2.0.2</td></tr></table></div><div class="dependencies"><h3>dev dependencies</h3><table><tr><td class="dep-name">swank-clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.3.1</td></tr><tr><td class="dep-name">marginalia</td><td class="dotted"><hr /></td><td class="dep-version">0.3.2</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#chisel.lda">chisel.lda</a></li><li><a href="#chisel.instances">chisel.instances</a></li><li><a href="#chisel.util">chisel.util</a></li><li><a href="#chisel.theta">chisel.theta</a></li><li><a href="#chisel.sample">chisel.sample</a></li><li><a href="#chisel.phi">chisel.phi</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chisel.lda" name="chisel.lda"><h1 class="project-name">chisel.lda</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>See README for license information
+Run LDA inference and write out results</p>
 </td><td class="codes"><pre class="brush: clojure">(ns chisel.lda
   (:import (java.io File ObjectOutputStream FileOutputStream))
-  (:import (cc.mallet.topics ParallelTopicModel)))</pre></td></tr><tr><td class="docs"><p>For now, simply hard-code all these parameters...</p>
-</td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs"><p>TODO: fixme</p>
-</td><td class="codes"><pre class="brush: clojure"></pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(def topwords 20)</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(def showinterval 50)</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(def numthreads (dec (.availableProcessors (Runtime/getRuntime))))</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(def optimizeinterval 25)</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(def optimizeburnin 200)</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(def usesymmetricalpha false)</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(def alpha 50.0)</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(def beta 0.01)</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(def thetathresh 0.0)
-(def thetamax -1) </pre></td></tr><tr><td class="docs"><p>Train a ParallelTopicModel from a given InstanceList</p>
-</td><td class="codes"><pre class="brush: clojure">            
+  (:import (cc.mallet.topics ParallelTopicModel)))</pre></td></tr><tr><td class="docs"><p>Train a ParallelTopicModel from a given InstanceList with named
+arguments for all LDA parameters</p>
+</td><td class="codes"><pre class="brush: clojure">
 (defn run-lda
-  [instancelist T numiter]
+  [instancelist &amp; {:keys [T numiter topwords
+                          showinterval numthreads
+                          optinterval optburnin
+                          usesymmetricalpha alpha beta
+                          thetathresh thetamax]
+                   :or {T 50 numiter 500
+                        topwords 20 showinterval 50 
+                        numthreads
+                        (dec (.availableProcessors
+                              (Runtime/getRuntime)))
+                        optinterval 25 optburnin 200
+                        usesymmetricalpha false
+                        alpha 50.0 beta 0.01
+                        thetathresh 0.0 thetamax -1}}]
   (doto (new ParallelTopicModel T alpha beta)
     (.addInstances instancelist)
     (.setTopicDisplay showinterval topwords)
     (.setNumIterations numiter)        
-    (.setOptimizeInterval optimizeinterval)
-    (.setBurninPeriod optimizeburnin)
+    (.setOptimizeInterval optinterval)
+    (.setBurninPeriod optburnin)
     (.setSymmetricAlpha usesymmetricalpha)                
     (.setNumThreads numthreads)
     (.estimate)))</pre></td></tr><tr><td class="docs"><p>Write out topic-word weights (propto phi_z=P(w|z))</p>
@@ -2564,7 +2567,7 @@ $(document).ready(function() {
   (.printDocumentTopics topicmodel (new File outfile)))</pre></td></tr><tr><td class="docs"><p>Write out top N words for each topic</p>
 </td><td class="codes"><pre class="brush: clojure">
 (defn write-topics
-  [topicmodel outfile]  
+  [topicmodel outfile &amp; {:keys [topwords] :or {topwords 20}}]
   (.printTopWords topicmodel (new File outfile) topwords false))</pre></td></tr><tr><td class="docs"><p>Write out top N words for each topic</p>
 </td><td class="codes"><pre class="brush: clojure">
 (defn write-sample
@@ -2575,7 +2578,8 @@ $(document).ready(function() {
   [instancelist outfile]  
   (doto (ObjectOutputStream. (FileOutputStream. outfile))
     (.writeObject instancelist)
-    (.close)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chisel.instances" name="chisel.instances"><h1 class="project-name">chisel.instances</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Convert docID&rarr;text hashmap to MALLET input format (InstanceList)</p>
+    (.close)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chisel.instances" name="chisel.instances"><h1 class="project-name">chisel.instances</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>See README for license information
+Convert docID&rarr;text hashmap to MALLET input format (InstanceList)</p>
 </td><td class="codes"><pre class="brush: clojure">(ns chisel.instances
   (:import (cc.mallet.types InstanceList Instance))
   (:import (cc.mallet.pipe Pipe
@@ -2601,19 +2605,20 @@ $(document).ready(function() {
                    [(new CharSequence2TokenSequence #&quot;[\p{L}\p{P}]*\p{L}&quot;)
                     (new TokenSequence2FeatureSequence)])]                    
     (doto (new InstanceList pipes)
-      (.addThruPipe (.iterator instanceiter)))))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chisel.util" name="chisel.util"><h1 class="project-name">chisel.util</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Utility function needed to access MALLET protected fields")</p>
+      (.addThruPipe (.iterator instanceiter)))))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chisel.util" name="chisel.util"><h1 class="project-name">chisel.util</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>See README for license information
+Utility function needed to access MALLET protected fields")</p>
 
 <p>(defn get-private-field
-Access private field of a Java object (kyle smith-Google Groups)</p>
+Access private field of a Java object (credit: kyle smith on Google Groups)</p>
 </td><td class="codes"><pre class="brush: clojure">(ns chisel.util
   [instance field-name]
   (. (doto (first (filter #(.. %1 getName (equals field-name))
                           (.. instance getClass getDeclaredFields)))       
        (.setAccessible true))
-     (get instance)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chisel.theta" name="chisel.theta"><h1 class="project-name">chisel.theta</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Estimation and manipulation of theta=P(z|d)</p>
+     (get instance)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chisel.theta" name="chisel.theta"><h1 class="project-name">chisel.theta</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>See README for license information
+Estimation and manipulation of theta=P(z|d)</p>
 </td><td class="codes"><pre class="brush: clojure">(ns chisel.theta
-  (:use [chisel.util :only (get-private-field)]))
-</pre></td></tr><tr><td class="docs"><p>Extract a single document theta_d = P(z|d).  Does not currently
+  (:use [chisel.util :only (get-private-field)]))</pre></td></tr><tr><td class="docs"><p>Extract a single document theta_d = P(z|d).  Does not currently
 include smoothing parameter, but a closer read of MALLET src reveals
 they don't either...!</p>
 </td><td class="codes"><pre class="brush: clojure">
@@ -2630,7 +2635,8 @@ they don't either...!</p>
 </td><td class="codes"><pre class="brush: clojure">    
 (defn get-theta
   [topicmodel]
-  (map get-single-theta (get-private-field topicmodel &quot;data&quot;)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chisel.sample" name="chisel.sample"><h1 class="project-name">chisel.sample</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Actual latent z assignments from final Gibbs sample</p>
+  (map get-single-theta (get-private-field topicmodel &quot;data&quot;)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chisel.sample" name="chisel.sample"><h1 class="project-name">chisel.sample</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>See README for license information
+Actual latent z assignments from final Gibbs sample</p>
 </td><td class="codes"><pre class="brush: clojure">(ns chisel.sample
   (:require [clojure.string :as str])
   (:use [chisel.util :only (get-private-field)]))</pre></td></tr><tr><td class="docs"><p>Get the token-sample associations for a single document</p>
@@ -2647,7 +2653,8 @@ they don't either...!</p>
 (defn get-sample
   [topicmodel]
   (map (partial get-single-sample (.getAlphabet topicmodel))
-       (get-private-field topicmodel &quot;data&quot;) ))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chisel.phi" name="chisel.phi"><h1 class="project-name">chisel.phi</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>Estimation and manipulation of phi=P(w|z)</p>
+       (get-private-field topicmodel &quot;data&quot;) ))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#chisel.phi" name="chisel.phi"><h1 class="project-name">chisel.phi</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><p>See README for license information
+Estimation and manipulation of phi=P(w|z)</p>
 </td><td class="codes"><pre class="brush: clojure">(ns chisel.phi
   (:use [chisel.util :only (get-private-field)]))</pre></td></tr><tr><td class="docs"><p>Process typeTopicCounts[] (from
 ParallelTopicModel.printTopicWordWeights).  Clojure re-write of tricky
