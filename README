@@ -1,24 +1,60 @@
 # chisel
 
-This package contains Clojure wrapper code to do LDA topic modeling
-via the MALLET Java API.  For example, we may wish to run LDA directly
-against text records in a database without touching the local
-filesystem, programmatically extract the learned topics, and write
-these to a different database.  The goal of this wrapper code is to
-make these kind of tasks easier.
+This code provides a Clojure wrapper to do Latent Dirichlet Allocation
+(LDA) [1] topic modeling via the MALLET [2] Java API.  For example, we
+may wish to run LDA directly against text records in a database
+without touching the local filesystem, programmatically extract the
+learned topics, and write these to a different database.  The goal of
+this wrapper code is to make these kind of tasks easier.
+
+[1] Blei, David M., Ng, Andrew Y., and Jordan, Michael
+I. (2003). Latent Dirichlet Allocation.  Journal of Machine Learning
+Research (JMLR) 3 (Mar. 2003), 993-1022.
+
+[2] McCallum, Andrew K.  "MALLET: A Machine Learning for Language
+Toolkit."  http://mallet.cs.umass.edu. 2002.
+
 
 ## Usage
 
-(def corpus {"Doc1" "Foo bar baz cattle snow machine",
-             "Doc2" "Snoopy snoopy snoopy snoopy", ...})
-(def instances (chisel.instances/get-instance-list corpus))
-(def T 50)
-(def numsamp 500)
-(def topicmodel (chisel.lda/run-lda instances :T T :numsamp numsamp))
-(chisel.lda/write-topic-word topicmodel "mycorpus.topics")
+This wrapper requires you to have already built and installed the
+MALLET jar to your local maven repo (see the above link [2]).
+
+You should then be able to install the wrapper with 'lein install' and
+use the chisel namespaces in your own code.  For example:
+
+(ns my-example
+ (:use (chisel instances lda)))
+
+ (let [docs {"doc1" "cat cat bat bat"
+             "doc2" "cat cat bat bat dog dog"
+             "doc3" "dog dog dog"}
+       inst (chisel.instances/get-instance-list docs)
+       tm (chisel.lda/run-lda inst :T 2 :numiter 50 :topwords 3 :alpha 0.5)]
+  (chisel.lda/write-topics tm "example.topics" :topwords 3))
+
 
 ## License
 
-Copyright (C) 2011 David Andrzejewski
+Copyright (c) 2011, Lawrence Livermore National Security, LLC. Produced at
+the Lawrence Livermore National Laboratory. Written by David Andrzejewski,
+andrzejewski1@llnl.gov OCEC-10-073 All rights reserved.
 
-Distributed under the Eclipse Public License, the same as Clojure.
+This file is part of the C-Cat package and is covered under the terms
+and conditions therein.  See https://github.com/fozziethebeat/C-Cat
+for details.
+
+This code is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License version 2 as
+published by the Free Software Foundation and distributed hereunder to
+you.
+
+THIS SOFTWARE IS PROVIDED "AS IS" AND NO REPRESENTATIONS OR
+WARRANTIES, EXPRESS OR IMPLIED ARE MADE. BY WAY OF EXAMPLE, BUT NOT
+LIMITATION, WE MAKE NO REPRESENTATIONS OR WARRANTIES OF MERCHANT-
+ABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE
+LICENSED SOFTWARE OR DOCUMENTATION WILL NOT INFRINGE ANY THIRD PARTY
+PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
