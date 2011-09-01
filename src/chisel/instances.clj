@@ -25,7 +25,7 @@
   "Convert (documentID, text) map to MALLET InstanceList"
   [instanceiter]
   (let [pipes (new SerialPipes                
-                   [(new CharSequence2TokenSequence #"[\p{L}\p{P}]*\p{L}")
+                   [(new CharSequence2TokenSequence #"\S+")
                     (new TokenSequence2FeatureSequence)])]                    
     (doto (new InstanceList pipes)
       (.addThruPipe (.iterator instanceiter)))))
